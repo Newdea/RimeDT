@@ -1,0 +1,24 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Weasel::UIStyleSettings"
+  modified_time: "Wed May 20 16:55:47 2020"
+  rime_version: 1.5.3
+patch:
+  "app_options/winkawaks.exe":
+    ascii_mode: true
+  "preset_color_schemes/starcraft":
+    author: "Contralisk <contralisk@gmail.com>, original artwork by Blizzard Entertainment"
+    back_color: 0x000000
+    border_color: 0x1010a0
+    candidate_text_color: 0x30bb55
+    hilited_back_color: 0x000000
+    hilited_candidate_back_color: 0x000000
+    hilited_candidate_text_color: 0x60ffa8
+    hilited_text_color: 0xfecb96
+    name: "星際我爭霸／StarCraft"
+    text_color: 0xccaa88
+  "style/color_scheme": brisk
+  "style/display_tray_icon": true
+  "style/horizontal": false
+  "style/inline_preedit": false

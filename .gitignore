@@ -1,0 +1,11 @@
+# utf-8
+
+.ignore
+
+*.userdb/
+build/
+sync/
+
+installation.yaml
+user.yaml
+
