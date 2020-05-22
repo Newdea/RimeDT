@@ -1,4 +1,7 @@
-# utf-8
+utf-8
 
-patch:
-  __include: wubixinshiji.custom.yaml
+__include: wubixinshiji.custom:/
+patch:  
+  # __include: wubixinshiji.custom
+  fixed/dictionary: wubi98  
+

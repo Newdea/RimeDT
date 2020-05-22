@@ -1,6 +1,7 @@
 # utf-8
 
 .ignore
+*.tmp
 
 *.userdb/
 build/

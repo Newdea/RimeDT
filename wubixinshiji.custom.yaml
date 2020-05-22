@@ -14,57 +14,64 @@ patch:
     - { when: composing, accept: Return, send: Escape }
     - { when: has_menu, accept: Return, send: Escape }
     # 空碼時按空格鍵清空輸入碼
-    # - {when: has_menu, accept: space, send: space}
-    # - {when: composing, accept: space, send: Escape}
+    - {when: has_menu, accept: space, send: space}
+    - {when: composing, accept: space, send: Escape}
+
   engine/translators:
-    - punctuator
+    # - punctuator
     - punct_translator
-    - selector        # 加在這裏
+    # - selector        # 加在這裏
+    - echo_translator  # （无有其他结果时，）创建一个与编码串一个模样的候选项
     - reverse_lookup_translator
     - table_translator@fixed
     - table_translator
   engine/filters:
-    - simplifier  # 必要組件一
+    # - simplifier  # 必要組件一
     - uniquifier  #作用是在 simplifier 執行轉換之後，將文字相同的候選項合併。
+
   # translator/enable_sentence: false 
   # translator/enable_encoder: false
   # translator/encode_commit_history: false
   #   enable_user_dict: false
   # translator/tips: "〔flex〕"
-  # translator/disable_user_dict_for_patterns:
-  #   - "^z.*$"
-  #   - "^[A-Za-z ].*$"
+  translator/+:
+    # __patch=/
+    disable_user_dict_for_patterns:
+      - "^z.*$"
+      - "^[A-Za-z ].*$"
   # translator/suffix: "+"
-  
-  fixed:
-    __include: wubixinshiji.schema:/translator
-    # dictionary: wubixinshiji
-    enable_charset_filter: true
+  # table_translator@fixed: 
+  fixed:  
+    # translator: wubixinshiji
+    __include: wubixinshiji.schema.yaml:/translator    # circular dependencies detected in wubixinshiji.schema:
+    # __patch: translator/dictionary  
+      # __include: table_translator/dictionary
+    # enable_charset_filter: true
     enable_sentence: false       #是否開啓自動造句
     enable_encoder: false      # 自动造词
     encode_commit_history: false      # 对已上屏词自动成词  
-    max_phrase_length: 4
-    disable_user_dict_for_patterns:
-    - "^z.*$"
-    # - "^[A-Za-z ].*$"
+    # max_phrase_length: 4
     enable_user_dict: false
     enable_completion: true
-    initial_quality: 1000
+    initial_quality: 10000
     # sentence_over_completion: true    # 智能组句
     tips: "〔fixed〕"
     closing_tips: "fixed"
-  
+    disable_user_dict_for_patterns:  
+      - "^z.*$"
+      - "^[A-Za-z ].*$"  
 
   punctuator:  
     import_preset: symbols  
     use_space: true  #可以符号直接上屏，注意缩进
-    full_shape:
-      '\\' : { commit: 、 }
-    half_shape:
-      '\\' : { commit: 、 }
-  # 'punctuator/half_shape/;':      #爲字符串包含符號，最好用 單引號 括起來；儘量不用雙引號以避免符號的轉義問題
-  #   - ;
-  #   - 
+    # __patch:
+    #   full_shape:
+    #     '\\' : { commit: 、 }
+    #   half_shape:
+    #     '\\' : { commit: 、 }
+  # 'punctuator/half_shape/\':      #爲字符串包含符號，最好用 單引號 括起來；儘量不用雙引號以避免符號的轉義問題
+  #   - `
+  #   - 123456
   #   - gz05188
   #   - 'http://rime.github.io'
   #   - 上天赋予你高的智商，教你用到有用的地方。
@@ -74,13 +81,13 @@ patch:
     import_preset: default
     patterns:
       reverse_lookup: "^z[a-z]*'?$"
-      email: "^[a-z][-_.0-9a-z]@.$"
-      url: "^(www[.]|https?:|ftp:|mailto:).$"
-      number: '^[-+]?[0-9][.:0-9]*[%]?$'
+      # email: "^[a-z][-_.0-9a-z]@.$"
+      # url: "^(www[.]|https?:|ftp:|mailto:).$"
+      # number: '^[-+]?[0-9][.:0-9]*[%]?$'
       punct: '^/([0-9]0?|[A-Za-z]+)$'  #配合symbols.yaml中的特殊字符輸入
 
   speller:
-    delimiter: " ;'" 
+    delimiter: " #;'" 
     #max_code_length: 4
     auto_select: true #顶字上屏
     max_code_length: 4  
@@ -93,3 +100,4 @@ patch:
 #   tips: 〔符号〕
 #   preedit_format:
 #     - xform/([nl])v/$1ü/
+

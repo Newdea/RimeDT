@@ -1,4 +1,12 @@
+# utf-8 
 
+__include: wubixinshiji.custom.yaml:/ 
 patch:
-  __include: wubi98.custom.yaml
-  
+  fixed/dictionary: wubi86  
+
+  # __include: wubi98.custom.yaml
+  # __include_local_reference:  
+  #   - __include: wubixinshiji.custom.yaml
+    # - __include: /wubixinshiji.custom.yaml
+    # - __include: :wubixinshiji.custom.yaml
+    # - __include: :/wubixinshiji.custom.yaml
