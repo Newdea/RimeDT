@@ -1,0 +1,49 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Mon May 18 14:36:20 2020"
+  rime_version: 1.5.3
+patch:
+  schema_list:
+    - {schema: luna_pinyin_fluency}
+    - {schema: wubi86}
+    - {schema: wubi_pinyin}
+    - {schema: wubi_trad}
+  ascii_composer: 
+    good_old_caps_lock: true 
+    switch_key: 
+      Return: clear 
+      Shift_R: commit_code
+      Control_L: noop 
+      Control_R: noop 
+  key_binder:
+    bindings:
+      - { when: has_menu, accept: Return, send: Escape }
+      - { when: composing, accept: Return, send: Escape }
+  engine:
+    translators:
+      - table_translator@fixed
+      - table_translator
+    filter:
+      - uniquifier
+  fixed:
+    dictionary: the_same_dictionary
+    enable_user_dict: false
+    enable_completion: false
+    initial_quality: 1000
+speller:
+  delimiter: " ;'"
+  #max_code_length: 4
+  auto_select: true #顶字上屏
+  max_code_length: 4  
+translator:
+  dictionary: wubi86
+  enable_charset_filter: true
+  enable_sentence: false
+  enable_encoder: false
+  enable_completion: true  #编码提示开关
+  enable_user_dict: true
+  encode_commit_history: false
+  max_phrase_length: 4
+

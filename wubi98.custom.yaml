@@ -1,0 +1,7 @@
+utf-8
+
+__include: wubixinshiji.custom:/
+patch:  
+  # __include: wubixinshiji.custom
+  fixed/dictionary: wubi98  
+
