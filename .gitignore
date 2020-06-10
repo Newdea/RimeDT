@@ -1,6 +1,8 @@
 # utf-8
 
-#.gitignore
+
+# .gitignore
+
 *.tmp
 
 *.userdb/

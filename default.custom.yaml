@@ -10,3 +10,6 @@ patch:
     - {schema: wubixinshiji}
     - {schema: wubi06_tygfhzb_dz}
     - {schema: wubi06_unicodecjk}
+    - {schema: wubixinshiji_pinyin}
+    - {schema: wubixinshiji_trad}
+
