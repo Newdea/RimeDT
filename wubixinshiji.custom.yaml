@@ -40,6 +40,7 @@ patch:
     - table_translator
   engine/filters:
     # - simplifier  # 必要組件一
+    - single_char_filter
     - uniquifier  #作用是在 simplifier 執行轉換之後，將文字相同的候選項合併。
 
   translator/+:
@@ -48,12 +49,17 @@ patch:
     # encode_commit_history: false
     # enable_user_dict: false
     # max_phrase_length: 4
+    enable_completion: true
     tips: "〔flex〕"
     # __patch=/
     disable_user_dict_for_patterns:
       - "^z.*$"
       # - "^[A-Za-z ].*$"
     # suffix: "+"
+    preedit_format:
+      - xform/^([a-z ])$/$1｜\U$1\E/
+     # - xform/(?<=[a-z])\s(?=[a-z])//
+
 
   mkst:
     __include: wubixinshiji.schema.yaml:/translator
@@ -116,8 +122,14 @@ patch:
     delimiter: " `;'" 
     #max_code_length: 4
     auto_select: true #顶字上屏
-    # auto_select_pattern: "^[a-y][a-z]{0,3}$"
+    auto_select_pattern: "^[a-y][a-z]{3}$"
     max_code_length: 4  
+    #auto_clear: max_code_length #自动清除空码
+    auto_clear: 4 #自动清除空码
+    algebra:
+      - derive/^(.).(.*)$/$1z$2/  
+      - derive/^(..).(.*)$/$1z$2/  
+      - derive/^(...).(.*)$/$1z$2/  
 
 # reverse_lookup:
 #   # tag: reverse_lookup
