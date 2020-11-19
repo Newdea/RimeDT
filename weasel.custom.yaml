@@ -21,4 +21,5 @@ patch:
   "style/color_scheme": brisk
   "style/display_tray_icon": true
   "style/horizontal": false
+   # TSF格式，字母输入到input里
   "style/inline_preedit": false
